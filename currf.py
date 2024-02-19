@@ -1,19 +1,39 @@
 # declaring a function
-def currency(name):
-    if ((name)=="USD"):            # us dollar
-      print(f"Ksh {amount*150}")
-    elif (name=="EUR"):           # euro
-      print(f"Ksh {amount*160}")
-    elif (name=="JPY"):           #japanese yen
-      print(f"Ksh {amount*130}")
-    elif (name=="GBP"):        # british pound
-      print(f"Ksh {amount*180}")
+def currency_converter(curr_from,curr_to,amount):
+    if (curr_from =="USD" and curr_to =="KSH"):     # USD to KSH
+      cov_amt=amount*150
+      print(f"{amount} {curr_from} is equivalent to {curr_to} {cov_amt}")
+    elif (curr_from =="KSH" and curr_to =="USD"):     
+      cov_amt=amount/150
+      print(f"{amount} {curr_from} is equivalent to {curr_to} {cov_amt}")
+
+    elif (curr_from=="EUR" and curr_to=="KSH"):     # EUR to KSH
+      cov_amt=amount*170
+      print(f"{amount} {curr_from} is equivalent to {curr_to} {cov_amt}")
+    elif (curr_from =="KSH" and curr_to =="EUR"):  
+      cov_amt=amount/170
+      print(f"{amount} {curr_from} is equivalent to {curr_to} {cov_amt}")
+
+    elif (curr_from=="JPY" and curr_to=="KSH"):     # JPY to KSH
+      cov_amt=amount*175
+      print(f"{amount} {curr_from} is equivalent to {curr_to} {cov_amt}")
+    elif (curr_from =="KSH" and curr_to =="JPY"):  
+      cov_amt=amount/175
+      print(f"{amount} {curr_from} is equivalent to {curr_to} {cov_amt}")
+
+    elif  (curr_from=="GBP" and curr_to=="KSH"):     # GBP to KSH
+      cov_amt=amount*180
+      print(f"{amount} {curr_from} is equivalent to {curr_to} {cov_amt}")
+    elif (curr_from =="KSH" and curr_to =="GBP"):  
+      cov_amt=amount/180
+      print(f"{amount} {curr_from} is equivalent to {curr_to} {cov_amt}")
 
     else:
         print("Exchange rate is not found")
         
-name=input("Enter currency type: ")
+curr_from=input("Enter currency to convert from ").upper()
+curr_to=input("Enter currency to convert to ").upper()
+amount=int(input("Enter amount to convert= "))
 
-amount=int(input("Enter amount to convert to Ksh= "))
 # calling a function
-currency(name.upper())
+currency_converter(curr_from,curr_to,amount)

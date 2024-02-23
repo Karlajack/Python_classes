@@ -13,6 +13,7 @@ max_price=0
 for product in products:
     if (max_price<product["price"]):
         max_price=product["price"]
+# returning dictionary with maximum price
     for item in product:
         if product["price"]==max_price: 
             print (product)

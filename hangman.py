@@ -4,45 +4,59 @@ hangman=["JOVIAL","SMART","JUICY","HANDSOME","BRIGHT"]
 
 # selecting the word randomly
 
-word=choice(hangman)
+word=choice(hangman).lower()
 
 # printing character of randomly selected word as dashes
 print(word)
-print("_"*len(word))
+guessed_word=("_"*len(word))
 
 
-# counting the no of characters in word
-times=len(word)
+# counting the no of correct guesses
+no_correct_guesses=0
 
-# counting the no of wrong characters guesses
-failed=0
+# counting the no of incorrect guesses
+no_incorrect_guesses=0
+
 letters_guessed=[]
-# creating a loop equavalent to length of the word selected
-while times>0:
-   
-    guess=input("Guess the Character of the word: ").upper()
-    if (guess in word and guess not in letters_guessed):
-        print (guess,end=" ")
+# creating a loop equivalent to length of the word and maximum incorrect guess allowed
+while no_correct_guesses<len(word) and no_incorrect_guesses<6:   
+    guess=input("Guess the Character of the word: ").lower()
+    # checking if  guess is a single character
+    if len(guess) !=1:      
+        print("please enter a single letter,")
+    # checking if guess is letter
+    elif guess not in "abcdefghijklmnopqrstuvwxyz":
+        print("Please enter a LETTER.")
+    # checking if guess in already in letter guessed
+    elif  guess  in letters_guessed:
+        print ("Letter already guessed the letter,guess another letter")   
+       
+    elif guess in word :
+        #print (guess,end=" ")
         letters_guessed.append(guess) # Creating a list of characters chosen
-
-        times=times-1                   # decreasing the remaining chance choose a character  
-    elif (guess in word and guess in letters_guessed):
-          print ("Letter already selected,select another letter")
+        for i in range(len(word)):
+            if word[i] in letters_guessed:
+                guessed_word=guessed_word[:i] + word[i] + guessed_word[i+1:]
+        for letter in guessed_word: 
+            print(letter,end=' ')
+        print()
+             
+        no_correct_guesses+=1          # tracking the correct guesses  
     else:
         guess not in word
-        print("_", end=" ")
+        print("Letter not in word,guess another lettter")
         letters_guessed.append(guess)
-        times=times-1     # decreasing the remaining chance choose a character  
-        failed=failed+1   # increasing count of failed attempts  
-        if failed==6:     # Exit loop if the number of failed attempts are matched 6
-            break
-if failed==0:
-    print(f"letters guessed: {letters_guessed}")
+        for letter in guessed_word: 
+            print(letter,end=' ')
+        print()
 
-    print(f"Word is {word},YOU WORN")
-else:
-    print(f"letters guessed: {letters_guessed}") 
-    print(f"Word is {word},YOU LOSE")
+        no_incorrect_guesses+=1   # tracking incorrect guess 
+           
+if no_correct_guesses==len(word):
+       print(f"SecretWord is {word},YOU WON")
+else:    
+    print(f"corretly guessed letters are: {guessed_word}")
+    print(f"SecretWord is {word},YOU LOSE,good effort")
 
         
          

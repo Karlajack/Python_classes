@@ -1,4 +1,5 @@
 
+"""
 from random import choice
 #selecting the hangman words
 hangman=["JOVIAL","SMART","JUICY","HANDSOME","BRIGHT"]
@@ -39,6 +40,11 @@ while times>0:
 if failed==0:
     print(f"Word is {word},YOU WORN")
 else:
-    print(f"Word is {word},YOU LOSE")     
+    print(f"Word is {word},YOU LOSE")  
+    """   
          
-         
+blank="primary"
+word="drink"
+go=blank[:1]+ word[1]+blank[1+1:]
+
+print (go)

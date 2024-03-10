@@ -24,24 +24,23 @@ data = []
 for article in articles[:10]:
     title = article.find('p',class_='indicate-hover').text.strip()
     #description = article.find('p',class_='summary-class').text.strip()
-    print(title)
+    #print(title)
            
   # creating title dictionaries
-    data.append({'title': title})
+    #data.append({'title': title})
+    data.append({'title': title})#, 'description':}# description})
+    print(data)
 
-
-"""
 with open('nytimes.csv', 'w', newline='') as file:
-    writer = csv.DictWriter(file, fieldnames=['title'])#, #'description'])
+    writer = csv.DictWriter(file, fieldnames=['title']) #, 'description'])
     writer.writeheader()
     writer.writerows(data)
-    """
-
-    
+"""  
 # saving the articles dictinaries in CSV file
 with open("nytimes.csv",'w',newline='') as file:
     writer=csv.DictWriter(file,fieldnames=['title'])
     writer.writerows(data)
+    """
     
 
     
